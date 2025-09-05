@@ -35,6 +35,19 @@ class DeviceMapper extends QBMapper {
     return $this->insert($d);
   }
 
+  public function updateForUser(string $uid, int $id, string $name, string $mac, string $host, string $broadcast, int $port): Device {
+    $dev = $this->getForUserById($uid, $id);
+    if (!$dev) throw new \RuntimeException('Not found');
+
+    $dev->setName($name);
+    $dev->setMac($mac);
+    $dev->setHost($host);
+    $dev->setBroadcast($broadcast);
+    $dev->setPort($port);
+
+    return $this->mapper->update($dev);
+  }
+
   public function deleteForUser(string $userId, int $id): int {
     $qb = $this->db->getQueryBuilder();
     $qb->delete('wol_devices')
