@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+
+  <!-- Identity -->
+  <id>wol</id>
+  <name>Wake on LAN</name>
+  <summary>Wake your devices from Nextcloud</summary>
+  <description><![CDATA[
+    Simple Nextcloud app to send Wake-on-LAN magic packets and show live
+    online/offline status per user. Modern UI, CSRF-safe endpoints, and
+    works behind reverse proxies.
+  ]]></description>
+  <version>1.0.1</version>
+  <licence>agpl</licence>
+  <author>FungY911</author>
+  <namespace>Wol</namespace>
+  <category>tools</category>
+
+  <website>https://github.com/FungY911/wakeonlan-nextcloud</website>
+  <repository type="git">https://github.com/FungY911/wakeonlan-nextcloud.git</repository>
+  <bugs>https://github.com/FungY911/wakeonlan-nextcloud/issues</bugs>
+  <documentation>
+    <admin>https://github.com/FungY911/wakeonlan-nextcloud#-install</admin>
+    <user>https://github.com/FungY911/wakeonlan-nextcloud#-usage</user>
+    <developer>https://github.com/FungY911/wakeonlan-nextcloud#-development</developer>
+  </documentation>
+
+  <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/refs/heads/main/docs/screenshots/01-dashboard.png</screenshot>
+  <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/main/docs/screenshots/02-add-device.png</screenshot>
+
+  <dependencies>
+    <nextcloud min-version="29" max-version="31"/>
+    <php min-version="8.1" max-version="8.3"/>
+  </dependencies>
+
+  <navigations>
+    <navigation>
+      <name>Wake on LAN</name>
+      <route>wol.page.index</route>
+      <icon>app.svg</icon>
+      <order>50</order>
+    </navigation>
+  </navigations>
+
+  <bootstrap>OCA\Wol\AppInfo\Application</bootstrap>
+</info>

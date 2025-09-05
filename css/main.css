@@ -1,0 +1,164 @@
+/* Container should span entire content area */
+#wol-app.wol-container {
+  max-width: none;
+  width: 100%;
+  padding: 0 16px 24px;
+}
+
+/* Toolbar */
+.wol-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+.wol-title { margin: 0; font-size: 20px; font-weight: 600; }
+
+/* Buttons */
+.btn {
+  appearance: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-background-plain);
+  color: var(--color-main-text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(0.98); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn.primary {
+  background: var(--color-primary-element);
+  color: var(--color-primary-text);
+  border-color: transparent;
+}
+.btn.primary:hover { background: var(--color-primary-element-hover); }
+.btn.subtle { background: var(--color-background-hover); }
+
+/* Empty state */
+.wol-empty {
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-maxcontrast);
+  background: var(--color-background-plain);
+}
+.wol-empty-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.wol-empty-sub { opacity: 0.8; }
+
+/* Devices grid (full width, responsive) */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+.device-card {
+  background: var(--color-background-plain);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+}
+.device-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.device-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.device-meta { display: grid; gap: 4px; font-size: 13px; }
+.meta-key { opacity: .7; margin-right: 6px; }
+.meta-val { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+.device-actions { display: flex; gap: 8px; margin-top: 6px; }
+
+.wol-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:0 0 10px;border:1px solid rgba(0,0,0,.15)}
+.wol-dot.online{background:#2ecc71}
+.wol-dot.offline{background:#e74c3c}
+.wol-dot.unknown { background: rgba(82, 82, 82, 0.55); box-shadow: 0 0 0 0 rgba(92,92,92,.55); animation: wolDotPulse 1.2s ease-out infinite; }
+
+@keyframes wolDotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(92,92,92,.55); }
+  70%  { box-shadow: 0 0 0 6px rgba(92,92,92,0); }
+  100% { box-shadow: 0 0 0 0 rgba(92,92,92,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wol-dot.unknown::after { animation: none; }
+}
+
+.device-card__header{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+
+
+/* MODALS */
+.modal { display: none; }
+.modal.is-open { display: block; }
+.modal__backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+}
+.modal__dialog {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(640px, 92vw);
+  background: var(--color-main-background);
+  color: var(--color-main-text);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.modal__dialog--sm { width: min(420px, 92vw); }
+
+.modal__header { padding: 12px; }
+.modal__header { border-bottom: 1px solid var(--color-border); display:flex; align-items:center; justify-content:space-between; }
+.modal__title { margin: 0; font-size: 16px; font-weight: 600; }
+.modal__close {
+  border: none; background: transparent; color: var(--color-main-text);
+  font-size: 20px; line-height: 1; cursor: pointer;
+}
+.modal__body { padding: 16px; display: grid; gap: 10px; }
+.fld { display: grid; gap: 6px; }
+.fld--inline input { width: 120px; }
+
+/* Inputs */
+/* Modal body as single-column layout */
+.modal__body {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr; /* full-width single column */
+  gap: 12px;
+}
+
+/* Fields take full width */
+.fld { width: 100%; }
+.fld > span { display: block; font-size: 12px; opacity: .8; margin-bottom: 6px; }
+
+.modal__body input,
+.modal__body select,
+.modal__body textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-main-background);
+  color: var(--color-main-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Focus state */
+.modal__body input:focus,
+.modal__body select:focus,
+.modal__body textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* Override the old inline width so Port is also full width */
+.fld--inline input { width: 100%; }
+
