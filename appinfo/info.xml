@@ -30,7 +30,7 @@
   <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/main/docs/screenshots/02-add-device.png</screenshot>
 
   <dependencies>
-    <nextcloud min-version="29" max-version="31"/>
+    <nextcloud min-version="30" max-version="31"/>
     <php min-version="8.1" max-version="8.3"/>
   </dependencies>
 
@@ -45,4 +45,5 @@
 
   <bootstrap>OCA\Wol\AppInfo\Application</bootstrap>
 </info>
+
 
