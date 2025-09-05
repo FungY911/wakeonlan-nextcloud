@@ -41,7 +41,7 @@ class WolController extends Controller {
     }
 
     #[NoAdminRequired]
-    #[NoCSRFRequired]
+    #[CSRFRequired]
     public function status(): JSONResponse {
         $user = $this->userSession->getUser();
         if (!$user) return $this->err('Unauthorized', 401);
@@ -236,3 +236,4 @@ class WolController extends Controller {
         }
     }
 }
+
