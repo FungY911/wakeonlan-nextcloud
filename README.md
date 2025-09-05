@@ -1,7 +1,7 @@
 # Wake on LAN for Nextcloud (Beta)
 
 [![License](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
-[![Nextcloud](https://img.shields.io/badge/Nextcloud-29--31%2B-0f6fb3.svg)](#)
+[![Nextcloud](https://img.shields.io/badge/Nextcloud-30--31%2B-0f6fb3.svg)](#)
 [![Status](https://img.shields.io/badge/status-alpha-orange.svg)](#)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777bb3.svg)](#)
 [![Issues](https://img.shields.io/github/issues/FungY911/wakeonlan-nextcloud.svg)](https://github.com/FungY911/wakeonlan-nextcloud/issues)
@@ -34,7 +34,7 @@ Add devices (name, MAC, host/IP, broadcast, port), send magic packets, and see l
 ---
 
 ## ✅ Requirements
-- Nextcloud **29+** (tested on NC 31.0.8)
+- Nextcloud **30+** (tested on NC 31.0.8)
 - PHP sockets (standard in Nextcloud)
 - Enabled exec in php-fpm
 ```bash
