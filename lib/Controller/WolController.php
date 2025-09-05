@@ -147,6 +147,60 @@ class WolController extends Controller {
         return false;
     }
 
+    #[NoAdminRequired]
+    #[CSRFRequired]
+    public function update(int $id): JSONResponse {
+        $user = $this->userSession->getUser();
+        if (!$user) return $this->err('Unauthorized', 401);
+
+        try {
+            $dev = $this->devices->getForUserById($user->getUID(), $id);
+            if (!$dev) return $this->err('Not found', 404);
+        } catch (\Throwable $e) {
+            return $this->err('Not found', 404);
+        }
+
+        $name      = trim((string)$this->request->getParam('name', ''));
+        $mac       = strtoupper(trim((string)$this->request->getParam('mac', '')));
+        $host      = trim((string)$this->request->getParam('host', ''));
+        $broadcast = trim((string)$this->request->getParam('broadcast', ''));
+        $portRaw   = $this->request->getParam('port', null);
+
+        if ($name === '') return $this->err('Name required', 422, 'name');
+        if (!preg_match('/^([0-9A-F]{2}:){5}[0-9A-F]{2}$/', $mac)) return $this->err('Invalid MAC', 422, 'mac');
+        if (!$this->isValidHost($host)) return $this->err('Invalid host/IP', 422, 'host');
+        if ($broadcast !== '' && !filter_var($broadcast, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $this->err('Invalid broadcast IP', 422, 'broadcast');
+        }
+
+        if (is_array($portRaw)) {
+            return $this->err('Invalid port', 422, 'port');
+        }
+        $portRaw = is_string($portRaw) ? trim($portRaw) : $portRaw;
+
+        $port = filter_var($portRaw, FILTER_VALIDATE_INT, [
+            'options' => ['min_range' => 1, 'max_range' => 65535],
+        ]);
+        if ($port === false) return $this->err('Invalid port', 422, 'port');
+
+        try {
+            $dev = $this->devices->updateForUser($user->getUID(), $id, $name, $mac, $host, $broadcast, $port);
+
+            return new JSONResponse([
+                'ok' => true,
+                'device' => [
+                    'id'        => (int)$dev->getId(),
+                    'name'      => $dev->getName(),
+                    'mac'       => $dev->getMac(),
+                    'host'      => $dev->getHost(),
+                    'broadcast' => $dev->getBroadcast(),
+                    'port'      => (int)$dev->getPort(),
+                ],
+            ]);
+        } catch (\Throwable $e) {
+            return $this->err('Server error while updating device.', 500);
+        }
+    }
 
     #[NoAdminRequired]
     #[CSRFRequired]
@@ -236,4 +290,3 @@ class WolController extends Controller {
         }
     }
 }
-
