@@ -13,7 +13,7 @@
   ]]></description>
   <version>1.0.1</version>
   <licence>agpl</licence>
-  <author>FungY911</author>
+  <author mail="mp4trik@seznam.cz">Patrik</author>
   <namespace>Wol</namespace>
   <category>tools</category>
 
@@ -26,7 +26,7 @@
     <developer>https://github.com/FungY911/wakeonlan-nextcloud#-development</developer>
   </documentation>
 
-  <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/refs/heads/main/docs/screenshots/01-dashboard.png</screenshot>
+  <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/main/docs/screenshots/01-dashboard.png</screenshot>
   <screenshot>https://raw.githubusercontent.com/FungY911/wakeonlan-nextcloud/main/docs/screenshots/02-add-device.png</screenshot>
 
   <dependencies>
@@ -45,3 +45,4 @@
 
   <bootstrap>OCA\Wol\AppInfo\Application</bootstrap>
 </info>
+
