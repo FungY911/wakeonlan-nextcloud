@@ -1,0 +1,122 @@
+name: Bug report
+description: Something isn't working as expected
+labels: [bug, needs triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out as much as you can.  
+        **Do not include secrets (tokens, passwords, IPs you consider private).**
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-checks
+      options:
+        - label: I searched existing issues and discussions.
+          required: true
+        - label: I’m on the latest release of this app.
+          required: true
+        - label: I sanitized logs (no secrets).
+          required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: From Nextcloud Apps → Wake on LAN (e.g., 1.0.1)
+      placeholder: 1.0.1
+    validations:
+      required: true
+  - type: input
+    id: nc-version
+    attributes:
+      label: Nextcloud version
+      placeholder: 31.0.8
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version
+      placeholder: 8.2.x (FPM)
+    validations:
+      required: true
+  - type: dropdown
+    id: db
+    attributes:
+      label: Database
+      options:
+        - MariaDB
+        - MySQL
+        - PostgreSQL
+        - SQLite
+    validations:
+      required: true
+  - type: dropdown
+    id: deploy
+    attributes:
+      label: Deployment
+      options:
+        - Bare-metal
+        - Docker / Podman
+        - Snap
+        - Other
+  - type: input
+    id: os
+    attributes:
+      label: Host OS / Distro & version
+      placeholder: Debian 12 / Ubuntu 22.04 / Raspberry Pi OS, etc.
+  - type: input
+    id: web
+    attributes:
+      label: Web server / Proxy
+      placeholder: Apache / nginx / Cloudflare Tunnel / Other
+  - type: checkboxes
+    id: exec
+    attributes:
+      label: PHP exec availability
+      options:
+        - label: exec/shell_exec are enabled (not in disable_functions)
+  - type: input
+    id: fping
+    attributes:
+      label: fping availability
+      description: Output of `command -v fping` or `fping -v` (if installed)
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Be specific. What did you do? What happened?
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. See error …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior / error
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: |
+        Add sanitized snippets from:
+        - Nextcloud log (data/nextcloud.log)
+        - Browser devtools console/network
+        - OCC output (if applicable)
+      render: bash
+  - type: textarea
+    id: devices
+    attributes:
+      label: Device config (sanitized)
+      description: Names/hosts/ports relevant to the failing operation.
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag & drop images here.

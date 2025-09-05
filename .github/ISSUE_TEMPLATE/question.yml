@@ -1,0 +1,41 @@
+name: Question / Support
+description: Ask a question or request guidance
+labels: [question, needs triage]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      placeholder: Describe what you’re trying to do.
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: 1.0.1
+  - type: input
+    id: nc-version
+    attributes:
+      label: Nextcloud version
+      placeholder: 31.0.8
+  - type: checkboxes
+    id: components
+    attributes:
+      label: Components involved
+      options:
+        - label: Status polling (TCP / fping)
+        - label: Sending magic packet (WOL)
+        - label: CSRF / security middleware
+        - label: Cloudflare / reverse proxy
+        - label: Database / migrations
+        - label: UI / modal / forms
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots (optional)
+      render: bash

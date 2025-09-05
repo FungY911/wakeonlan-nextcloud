@@ -1,0 +1,49 @@
+name: Database / Migration issue
+description: Problems creating or upgrading the app’s DB
+labels: [bug, database, needs triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If OCC migration failed, paste the **exact** error and your DB details.
+  - type: input
+    id: db
+    attributes:
+      label: Database engine & version
+      placeholder: MariaDB 10.11 / MySQL 8 / PostgreSQL 15 / SQLite
+    validations:
+      required: true
+  - type: input
+    id: prefix
+    attributes:
+      label: Table prefix
+      placeholder: oc_
+  - type: textarea
+    id: occ
+    attributes:
+      label: OCC output
+      description: e.g., `occ app:enable wol` or `occ migrations:status wol`
+      render: bash
+      validations:
+        required: true
+  - type: textarea
+    id: schema
+    attributes:
+      label: Current table schema for wol
+      description: Output of `SHOW CREATE TABLE oc_wol_devices;` (sanitize if needed)
+      render: sql
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message(s)
+      description: Full error text (sanitized).
+      validations:
+        required: true
+  - type: checkboxes
+    id: attempted
+    attributes:
+      label: Tried already
+      options:
+        - label: Ran two-step `host` column migration (add nullable → backfill → set NOT NULL)
+        - label: Verified entity getters/setters match columns
+        - label: Cleared app cache / disabled + re-enabled the app

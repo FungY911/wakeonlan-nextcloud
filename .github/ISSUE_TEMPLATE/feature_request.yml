@@ -1,0 +1,40 @@
+name: Feature request
+description: Suggest an idea to improve the app
+labels: [enhancement, needs triage]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for your idea!
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What limitation or pain point does this address?
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the UI/API behavior you’d like.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: ui
+    attributes:
+      label: UI sketches / wireframes
+      description: Optional—drop images or simple ASCII mockups.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: Per-user devices
+        - label: Admin-level settings
+        - label: Status polling
+        - label: Notifications
+        - label: Security / permissions
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
